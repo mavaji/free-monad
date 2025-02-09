@@ -1,17 +1,7 @@
-import interpreter.{Database, Interpreter, InterpreterWithError}
+import interpreter.Interpreter
 import monad.given
-import pipeline.DataPipeline.processPipeline
+import pipeline.DataPipeline.pipeline
 
 @main def main(): Unit =
-  processPipeline("events-topic").foldMap(Interpreter)
-  println("\nDatabase contents:\n\t" + Database.storage.toList.mkString("\n\t"))
-
-  println("=============================")
-
-  processPipeline("events-topic").foldMap(InterpreterWithError)
-  println("\nDatabase contents:\n\t" + Database.storage.toList.mkString("\n\t"))
-
-  println("=============================")
-
-  processPipeline("events-topic").foldMap(Interpreter)
-  println("\nDatabase contents:\n\t" + Database.storage.toList.mkString("\n\t"))
+  for i <- 1 to 5 do
+    pipeline("events-topic").foldMap(Interpreter)
