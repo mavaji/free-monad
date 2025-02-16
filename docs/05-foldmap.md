@@ -1,5 +1,7 @@
 ```plantuml
 @startuml
+!theme aws-orange
+skinparam defaultFontName "Gabriele Black Ribbon FG"
 title foldMap: Natural Transformation via Interpreter transforming DSL into IO operations
 
 ' DSL pipeline created by flatMap and liftF
@@ -22,23 +24,23 @@ package "Target Pipeline (IO)"  as io{
 
 
 ' NT transforms DSL pipeline into Target pipeline via Interpreter
-readFromKafka   -r->   targetReadFromKafka : "NT"
-logMessage      -r->   targetLogMessage : "NT"
-transformData   -r->   targetTransformData : "NT"
-logMessage2     -r->   targetLogMessage2 : "NT"
-writeToDatabase -r->   targetWriteToDatabase : "NT"
+readFromKafka   -r->   targetReadFromKafka : "                Natural transformation                 "
+logMessage      -r->   targetLogMessage : "              Natural transformation                  "
+transformData   -r->   targetTransformData : "            Natural transformation               "
+logMessage2     -r->   targetLogMessage2 : "            Natural transformation             "
+writeToDatabase -r->   targetWriteToDatabase : "            Natural transformation               "
 
-targetReadFromKafka -d--> targetLogMessage : "flatMap"
-targetLogMessage -d--> targetTransformData : "flatMap"
-targetTransformData -d--> targetLogMessage2 : "flatMap"
-targetLogMessage2 -d--> targetWriteToDatabase : "flatMap"
+targetReadFromKafka -d[#lightblue]-> targetLogMessage : "flatMap"
+targetLogMessage -d[#lightblue]-> targetTransformData : "flatMap"
+targetTransformData -d[#lightblue]-> targetLogMessage2 : "flatMap"
+targetLogMessage2 -d[#lightblue]-> targetWriteToDatabase : "flatMap"
 
 
 ' FlatMap chain in the DSL pipeline
-readFromKafka -d--> logMessage : "flatMap"
-logMessage -d--> transformData : "flatMap"
-transformData -d--> logMessage2 : "flatMap"
-logMessage2 -d--> writeToDatabase : "flatMap"
+readFromKafka -d[#lightblue]-> logMessage : "flatMap"
+logMessage -d[#lightblue]-> transformData : "flatMap"
+transformData -d[#lightblue]-> logMessage2 : "flatMap"
+logMessage2 -d[#lightblue]-> writeToDatabase : "flatMap"
 
 @enduml
 ```

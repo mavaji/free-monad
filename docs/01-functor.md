@@ -1,21 +1,23 @@
 ```plantuml
 @startuml
+!theme aws-orange
+skinparam defaultFontName "Gabriele Black Ribbon FG"
 title Functor
 
 package "Category C" as C{
-  rectangle A
-  rectangle B
-  A --> B : f
+  (a)
+  (b)
+  a -[#gray]-> b : f
 }
 
 package "Category D" as D{
-  rectangle FA
-  rectangle FB
-  FA --> FB : "F(f)"
+  (Fa)
+  (Fb)
+  Fa -[#lightblue]-> Fb : "Ff"
 }
 
 ' Functor F mappings
-A -r--> FA : F
-B -r--> FB : F
+a -r[#blue]-> Fa : F
+b -r[#blue]-> Fb : F
 @enduml
 ```

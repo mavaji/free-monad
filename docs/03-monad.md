@@ -1,20 +1,22 @@
 ```plantuml
 @startuml
+!theme aws-orange
+skinparam defaultFontName "Gabriele Black Ribbon FG"
 title Monad
 
 package "Monad" {
-  circle "a:A" as a
-  rectangle "M[A]" as pure
-  rectangle "M[B]" as f
-  rectangle "M[C]" as g
+  (a)
+  (M[A]) as pure
+  (M[B]) as mb
+  (M[C]) as mc
 }
 
 ' Value lifted into monad
-a --> pure : "pure(a)"
+a -[#gray]-> pure : "pure(a)"
 
 ' Chaining operations with flatMap
-pure --> f : "flatMap(f: A=> B)"
-f --> g : "flatMap(g: B => C)"
+pure -[#gray]-> mb : "flatMap(f: A=> M[B])"
+mb -[#gray]-> mc : "flatMap(g: B => M[C])"
 
 @enduml
 ```

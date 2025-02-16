@@ -1,5 +1,7 @@
 ```plantuml
 @startuml
+!theme aws-orange
+skinparam defaultFontName "Gabriele Black Ribbon FG"
 title ADT, Free Monad, DSL, and Interpreters with foldMap
 
 package "Free Monad & DSL" {
