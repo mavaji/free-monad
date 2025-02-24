@@ -1,8 +1,5 @@
 package monad
 
-trait ~>[F[_], G[_]]:
-  def apply[A](fa: F[A]): G[A]
-
 sealed trait Free[F[_], A]:
   def flatMap[B](f: A => Free[F, B]): Free[F, B] = FlatMap(this, f)
 
